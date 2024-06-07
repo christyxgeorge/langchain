@@ -190,16 +190,16 @@ class BaseLLM(BaseLanguageModel[str], ABC):
 
     # --- Runnable methods ---
 
-    def _convert_input(self, input: LanguageModelInput) -> PromptValue:
-        if isinstance(input, PromptValue):
-            return input
-        elif isinstance(input, str):
-            return StringPromptValue(text=input)
-        elif isinstance(input, list):
-            return ChatPromptValue(messages=input)
+    def _convert_input(self, prompt: LanguageModelInput) -> PromptValue:
+        if isinstance(prompt, PromptValue):
+            return prompt
+        elif isinstance(prompt, str):
+            return StringPromptValue(text=prompt)
+        elif isinstance(prompt, list):
+            return ChatPromptValue(messages=prompt)
         else:
             raise ValueError(
-                f"Invalid input type {type(input)}. "
+                f"Invalid input type {type(prompt)}. "
                 "Must be a PromptValue, str, or list of BaseMessages."
             )
 

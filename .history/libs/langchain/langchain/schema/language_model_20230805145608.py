@@ -1,7 +1,16 @@
 from __future__ import annotations
 
 from abc import ABC, abstractmethod
-from typing import TYPE_CHECKING, Any, List, Optional, Sequence, Set, TypeVar, Union
+from typing import (
+    TYPE_CHECKING,
+    Any,
+    List,
+    Optional,
+    Sequence,
+    Set,
+    TypeVar,
+    Union,
+)
 
 from langchain.load.serializable import Serializable
 from langchain.schema.messages import BaseMessage, get_buffer_string
@@ -37,7 +46,9 @@ LanguageModelInput = Union[PromptValue, str, List[BaseMessage]]
 LanguageModelOutput = TypeVar("LanguageModelOutput")
 
 
-class BaseLanguageModel(Serializable, Runnable[LanguageModelInput, LanguageModelOutput], ABC):
+class BaseLanguageModel(
+    Serializable, Runnable[LanguageModelInput, LanguageModelOutput], ABC
+):
     """Abstract base class for interfacing with language models.
 
     All language model wrappers inherit from BaseLanguageModel.
@@ -125,7 +136,9 @@ class BaseLanguageModel(Serializable, Runnable[LanguageModelInput, LanguageModel
         """
 
     @abstractmethod
-    def predict(self, text: str, *, stop: Optional[Sequence[str]] = None, **kwargs: Any) -> str:
+    def predict(
+        self, text: str, *, stop: Optional[Sequence[str]] = None, **kwargs: Any
+    ) -> str:
         """Pass a single string input to the model and return a string prediction.
 
          Use this method when passing in raw text. If you want to pass in specific
